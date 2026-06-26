@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>우리은행 광고 기획 — 브랜드 전략 + 멀티모달 스토리보드</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --color-text-primary: #111827;
+    --color-text-secondary: #374151;
+    --color-text-tertiary: #6B7280;
+    --color-background-primary: #ffffff;
+    --color-background-secondary: #F9FAFB;
+    --color-background-tertiary: #F3F4F6;
+    --color-border-tertiary: #E5E7EB;
+    --color-border-secondary: #D1D5DB;
+    --border-radius-lg: 10px;
+    --font-sans: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: #F7F8FA; color: var(--color-text-primary); }
+
+  /* ───── LAYOUT ───── */
+  .page-wrap { max-width: 900px; margin: 0 auto; padding: 40px 24px 60px; }
+
+  /* ───── SECTION DIVIDER ───── */
+  .section-divider {
+    display: flex; align-items: center; gap: 14px;
+    margin: 40px 0 28px;
+  }
+  .section-divider .sd-line { flex: 1; height: 1px; background: var(--color-border-tertiary); }
+  .section-divider .sd-label {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--color-text-tertiary); text-transform: uppercase;
+    background: var(--color-background-tertiary);
+    padding: 5px 14px; border-radius: 20px;
+    border: 0.5px solid var(--color-border-tertiary);
+    white-space: nowrap;
+  }
+
+  /* ───── PAGE HEADER ───── */
+  .page-header {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 24px 28px 20px;
+    margin-bottom: 32px;
+  }
+  .page-header h1 { font-size: 20px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 6px; }
+  .page-header .subtitle { font-size: 13px; color: var(--color-text-tertiary); }
+  .doc-badges { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .doc-badge {
+    font-size: 11px; font-weight: 500; padding: 3px 10px;
+    border-radius: 20px; border: 0.5px solid;
+  }
+  .badge-strategy { background: #EEF2FF; color: #3730A3; border-color: #A5B4FC; }
+  .badge-storyboard { background: #FEF3E2; color: #854F0B; border-color: #EF9F27; }
+
+  /* ───── BRAND DOC ───── */
+  .brand-doc {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .brand-doc-header {
+    background: var(--color-background-secondary);
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    padding: 14px 20px;
+    font-size: 14px; font-weight: 600; color: var(--color-text-primary);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .brand-doc-body { padding: 20px 24px; }
+
+  .bd-section { margin-bottom: 24px; }
+  .bd-section:last-child { margin-bottom: 0; }
+
+  .bd-h1 { font-size: 16px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 10px; }
+  .bd-h2 { font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 8px; }
+  .bd-h3 { font-size: 13px; font-weight: 600; color: var(--color-text-secondary); margin-bottom: 6px; }
+
+  .bd-p {
+    font-size: 13px; color: var(--color-text-secondary);
+    line-height: 1.7; margin-bottom: 8px;
+  }
+  .bd-p:last-child { margin-bottom: 0; }
+  .bd-p strong { color: var(--color-text-primary); }
+
+  .bd-arrow {
+    font-size: 13px; color: var(--color-text-secondary);
+    line-height: 1.7; padding: 8px 12px;
+    background: var(--color-background-secondary);
+    border-left: 3px solid #6366F1;
+    border-radius: 0 6px 6px 0;
+    margin: 8px 0;
+  }
+
+  .bd-quote {
+    font-size: 13px; font-weight: 600; color: var(--color-text-primary);
+    line-height: 1.7; padding: 12px 16px;
+    background: #EEF2FF;
+    border-left: 3px solid #6366F1;
+    border-radius: 0 8px 8px 0;
+    margin: 10px 0;
+  }
+
+  .bd-warn {
+    font-size: 13px; color: #7C2D12;
+    background: #FFF7ED; border-left: 3px solid #EA580C;
+    padding: 8px 12px; border-radius: 0 6px 6px 0;
+    margin: 8px 0;
+  }
+
+  .bd-usp-box {
+    background: #FFFBEB;
+    border: 1px solid #FCD34D;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 10px 0;
+  }
+  .bd-usp-box .usp-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    color: #92400E; text-transform: uppercase; margin-bottom: 6px;
+  }
+  .bd-usp-box .usp-text {
+    font-size: 13px; font-weight: 600; color: #1C1917; line-height: 1.6;
+  }
+
+  /* shared table style */
+  .bd-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0; }
+  .bd-table th {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    padding: 8px 12px; text-align: left;
+    font-weight: 600; color: var(--color-text-secondary);
+    font-size: 12px;
+  }
+  .bd-table td {
+    border: 0.5px solid var(--color-border-tertiary);
+    padding: 8px 12px; color: var(--color-text-secondary);
+    line-height: 1.5; vertical-align: top;
+  }
+  .bd-table tr:nth-child(even) td { background: #FAFAFA; }
+
+  /* tone compass */
+  .tone-compass {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px; color: var(--color-text-secondary);
+    line-height: 1.8; background: var(--color-background-secondary);
+    white-space: pre-line;
+    margin: 8px 0;
+  }
+
+  /* scene script */
+  .scene-script {
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .scene-script:last-child { margin-bottom: 0; }
+  .ss-header {
+    background: var(--color-background-secondary);
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    padding: 8px 14px;
+    font-size: 13px; font-weight: 600; color: var(--color-text-primary);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .ss-dur {
+    font-size: 11px; font-weight: 500; color: var(--color-text-tertiary);
+    background: var(--color-background-tertiary);
+    padding: 2px 8px; border-radius: 20px;
+  }
+  .ss-body { padding: 12px 14px; }
+  .ss-row { display: flex; gap: 8px; margin-bottom: 8px; font-size: 13px; line-height: 1.6; }
+  .ss-row:last-child { margin-bottom: 0; }
+  .ss-label { font-size: 11px; font-weight: 600; color: var(--color-text-tertiary);
+    min-width: 88px; padding-top: 1px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .ss-content { color: var(--color-text-secondary); flex: 1; }
+  .ss-narr { font-style: italic; color: var(--color-text-primary); }
+  .ss-note { font-size: 12px; color: var(--color-text-tertiary); margin-top: 8px; padding-top: 8px;
+    border-top: 0.5px solid var(--color-border-tertiary); }
+
+  /* ───── STORYBOARD (from original HTML) ───── */
+  .sb-wrap { padding: 0; }
+  .header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+  .title-block h1 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); }
+  .title-block p { font-size: 13px; color: var(--color-text-secondary); margin-top: 4px; }
+  .tool-legend { display: flex; gap: 10px; flex-wrap: wrap; }
+  .legend-pill { display: flex; align-items: center; gap: 6px; font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: 500; }
+  .pill-img { background: #FEF3E2; color: #854F0B; border: 0.5px solid #EF9F27; }
+  .pill-vid { background: #E6F1FB; color: #0C447C; border: 0.5px solid #378ADD; }
+  .pill-aud { background: #E1F5EE; color: #085041; border: 0.5px solid #1D9E75; }
+  .scene-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); margin-bottom: 16px; overflow: hidden; }
+  .scene-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 0.5px solid var(--color-border-tertiary); background: var(--color-background-secondary); }
+  .scene-num { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); min-width: 52px; }
+  .scene-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); flex: 1; }
+  .scene-dur { font-size: 12px; color: var(--color-text-tertiary); background: var(--color-background-tertiary); padding: 2px 8px; border-radius: 20px; white-space: nowrap; }
+  .scene-body { display: grid; grid-template-columns: 140px 1fr 1fr; gap: 0; }
+  .thumb { background: var(--color-background-secondary); border-right: 0.5px solid var(--color-border-tertiary); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px 12px; gap: 8px; min-height: 120px; }
+  .thumb-icon { font-size: 28px; color: var(--color-text-tertiary); }
+  .thumb-label { font-size: 11px; color: var(--color-text-tertiary); text-align: center; line-height: 1.4; }
+  .tone-cold .thumb { background: #E8F0F8; }
+  .tone-warm .thumb { background: #FEF5EA; }
+  .tone-bright .thumb { background: #F5FBF0; }
+  .scene-col { padding: 14px 16px; border-right: 0.5px solid var(--color-border-tertiary); }
+  .scene-col:last-child { border-right: none; }
+  .col-label { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+  .col-text { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+  .narr-text { font-size: 13px; color: var(--color-text-primary); line-height: 1.6; font-style: italic; }
+  .tool-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .tool-tag { display: flex; align-items: center; gap: 5px; font-size: 11px; padding: 3px 8px; border-radius: 6px; font-weight: 500; }
+  .tag-img { background: #FEF3E2; color: #854F0B; border: 0.5px solid #EF9F27; }
+  .tag-vid { background: #E6F1FB; color: #0C447C; border: 0.5px solid #378ADD; }
+  .tag-aud { background: #E1F5EE; color: #085041; border: 0.5px solid #1D9E75; }
+  .why-box { margin-top: 8px; padding: 8px 10px; background: var(--color-background-secondary); border-left: 2px solid var(--color-border-secondary); border-radius: 0 6px 6px 0; font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+  .why-label { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); margin-bottom: 4px; }
+  /* ───── SCENE EXTRAS (목표 / 프롬프트 / 출력 요약) ───── */
+  .scene-extras {
+    border-top: 0.5px solid var(--color-border-tertiary);
+    padding: 12px 16px;
+    display: flex; flex-direction: column; gap: 10px;
+    background: #FAFBFC;
+  }
+  .se-row { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; }
+  .se-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: #fff; background: #6366F1; border-radius: 4px;
+    padding: 3px 9px; white-space: nowrap; min-width: 72px; text-align: center; margin-top: 1px;
+  }
+  .se-label.lbl-goal   { background: #6366F1; }
+  .se-label.lbl-prompt { background: #0891B2; }
+  .se-label.lbl-output { background: #059669; }
+  .se-content { color: var(--color-text-secondary); line-height: 1.6; flex: 1; }
+  .se-prompts { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .se-prompt-item { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: 6px; padding: 7px 10px; }
+  .se-prompt-tool { font-size: 11px; font-weight: 600; color: #0891B2; margin-bottom: 3px; }
+  .se-prompt-text { font-size: 12px; color: var(--color-text-secondary); line-height: 1.55; font-family: 'Menlo', 'Consolas', monospace; }
+
+  .tool-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 1.5rem; }
+  .tool-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px 16px; }
+  .tool-card-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .tool-card-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .icon-img { background: #FEF3E2; }
+  .icon-vid { background: #E6F1FB; }
+  .icon-aud { background: #E1F5EE; }
+  .tool-card-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+  .tool-card-cat { font-size: 11px; color: var(--color-text-tertiary); }
+  .tool-card-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <h1>우리은행 광고 기획 통합본</h1>
+    <div class="subtitle">브랜드 전략 문서 + 멀티모달 AI 스토리보드</div>
+    <div class="doc-badges">
+      <span class="doc-badge badge-strategy">📄 B1-2 브랜드 전략</span>
+      <span class="doc-badge badge-storyboard">🎬 멀티모달 스토리보드</span>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       PART 1 — 브랜드 전략 (B1-2.docx)
+       ════════════════════════════════════ -->
+  <div class="section-divider">
+    <div class="sd-line"></div>
+    <div class="sd-label">Part 1 · 브랜드 전략</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <!-- 브랜드 아이덴티티 -->
+  <div class="brand-doc">
+    <div class="brand-doc-header">
+      <span>📌</span> 브랜드 아이덴티티
+    </div>
+    <div class="brand-doc-body">
+
+      <div class="bd-section">
+        <div class="bd-h2">1. 핵심 키워드: <strong>"우리(We)"</strong></div>
+        <div class="bd-p">이 대본 전체의 구조적 장치는 <strong>브랜드명 자체가 철학</strong>이라는 점을 활용합니다.</div>
+        <div class="bd-p">"우리은행"에서 <strong>'우리'</strong>를 제거하면 차갑고 기능적인 '은행'만 남는다.</div>
+        <div class="bd-p">'우리(우리말로 We/Us)'는 단순한 고유명사가 아닌, <strong>공동체·관계·연대</strong>를 뜻하는 언어적 장치로 작동합니다. 이름 안에 이미 브랜드 가치가 내재되어 있습니다.</div>
+      </div>
+
+      <div class="bd-section">
+        <div class="bd-h2">브랜드 포지셔닝</div>
+        <table class="bd-table">
+          <thead>
+            <tr>
+              <th>대비 구도</th>
+              <th>타 금융 (암묵적)</th>
+              <th>우리은행</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>관계</td><td>거래(Transaction)</td><td>관계(Relationship)</td></tr>
+            <tr><td>대상</td><td>숫자·실적</td><td>사람</td></tr>
+            <tr><td>감성</td><td>차갑고 기계적</td><td>따뜻하고 인간적</td></tr>
+            <tr><td>역할</td><td>금융 서비스 제공자</td><td>삶의 동반자</td></tr>
+          </tbody>
+        </table>
+        <div class="bd-arrow">→ <strong>"사람 중심 금융"</strong>이라는 포지셔닝을 경쟁 차별점으로 설정</div>
+      </div>
+
+      <div class="bd-section">
+        <div class="bd-h2">메인 타겟</div>
+        <div class="bd-p">20~40대, 금융을 "필요하지만 차갑고 불편한 것"으로 느끼는 사람들</div>
+        <div class="bd-p">단순한 연령 구분이 아닌 <strong>심리적 타겟</strong>으로 정의하는 게 핵심입니다.</div>
+        <table class="bd-table">
+          <thead>
+            <tr><th>구분</th><th>내용</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1차 타겟</td><td>사회 초년생 / 청년 (22~35세)</td></tr>
+            <tr><td>2차 타겟</td><td>소상공인 / 자영업자 (35~50세)</td></tr>
+            <tr><td>심리적 공통점</td><td>"은행은 나를 숫자로 본다"는 피로감을 가진 사람</td></tr>
+            <tr><td>행동적 특징</td><td>브랜드의 가치관에 공감할 때 선택하는 세대</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bd-section">
+        <div class="bd-h2">🎨 TONE &amp; MANNER — 어떻게 말하는가</div>
+        <div class="tone-compass">차갑지 않게  ────────────────────  과하지 않게
+냉소 ×                            눈물 자극 ×
+             ↓ 우리은행이 있어야 할 자리
+          조용하지만 단단한 온기</div>
+        <table class="bd-table" style="margin-top:10px">
+          <thead>
+            <tr><th>톤 요소</th><th>방향</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>언어 톤</td><td>설득하지 않고 <strong>공감</strong>한다</td></tr>
+            <tr><td>감정 온도</td><td>뜨겁지 않고 <strong>따뜻하게</strong></td></tr>
+            <tr><td>시각 톤</td><td>화려하지 않고 <strong>정갈하게</strong></td></tr>
+            <tr><td>음악 톤</td><td>웅장하지 않고 <strong>서정적으로</strong></td></tr>
+            <tr><td>자막 폰트</td><td>고딕 계열, <strong>신뢰감 + 단정함</strong></td></tr>
+          </tbody>
+        </table>
+        <div class="bd-warn">❌ 피해야 할 톤: 눈물 유발형 감동 광고 / 스펙·금리 나열형 / 유머·발랄 계열</div>
+      </div>
+
+      <div class="bd-section">
+        <div class="bd-h2">💎 USP — 왜 우리은행인가</div>
+        <div class="bd-p"><strong>Unique Selling Proposition (단 하나의 차별점)</strong></div>
+        <div class="bd-quote">"우리은행은 이름 자체가 철학이다. '우리(We)'라는 단어를 브랜드로 가진 유일한 은행."</div>
+        <div class="bd-p"><strong>이게 이 광고의 USP이자 다른 은행 광고가 절대 쓸 수 없는 무기입니다.</strong></div>
+        <table class="bd-table">
+          <thead>
+            <tr><th>비교</th><th>타 은행</th><th>우리은행</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>브랜드 차별화 방식</td><td>상품/금리/혜택 강조</td><td><strong>이름의 의미</strong>로 차별화</td></tr>
+            <tr><td>감성 접근</td><td>행복한 가족 이미지</td><td><strong>"없다면 어떻게 될까"</strong> 결핍 역설</td></tr>
+            <tr><td>공동체 표현</td><td>카피로만 언급</td><td>브랜드 네임 자체가 공동체</td></tr>
+          </tbody>
+        </table>
+        <div class="bd-usp-box" style="margin-top:12px">
+          <div class="usp-label">최종 브랜드 아이덴티티 한 문장</div>
+          <div class="usp-text">"우리은행은 '우리(We)'라는 이름처럼, 숫자가 아닌 사람을 중심에 두고 공동체와 함께 존재하는 금융 파트너다."</div>
+        </div>
+      </div>
+
+      <div class="bd-section">
+        <div class="bd-h2">광고 목적 / 핵심 메시지</div>
+        <div class="bd-p">광고 목적/핵심 메세지 : "'우리'라는 이름의 의미를 재발견하게 함으로써, 우리은행을 단순한 금융기관이 아닌 공동체의 동반자로 인식시키는 브랜드 감성 광고."</div>
+        <table class="bd-table">
+          <thead>
+            <tr><th>요소</th><th>내용</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>광고 목적</td><td>브랜드 인지 + 감성적 이미지 재정의</td></tr>
+            <tr><td>핵심 타겟 인사이트</td><td>"우리은행"을 그냥 은행으로만 알고 있는 사람들</td></tr>
+            <tr><td>핵심 메시지 1개</td><td>우리은행 = 공동체의 동반자</td></tr>
+            <tr><td>설득 방식</td><td>논리가 아닌 <strong>결핍의 감정</strong> ("없다면 어떻게 될까")</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 씬 대본 -->
+  <div class="brand-doc">
+    <div class="brand-doc-header">
+      <span>🎬</span> 씬별 대본 (원본)
+    </div>
+    <div class="brand-doc-body">
+
+      <div class="scene-script">
+        <div class="ss-header">
+          씬 1 <span class="ss-dur">10초</span>
+        </div>
+        <div class="ss-body">
+          <div class="ss-row">
+            <div class="ss-label">화면</div>
+            <div class="ss-content">AI로 생성한 거대하고 웅장한 우리은행 본점 건물 외관. 그런데 정문에 붙은 "우리은행로고 + 우리은행" 간판에서 "우리은행로고 + 우리" 부분의 빛이 꺼진다. 그냥 "은행"으로 표시됨. 불이 꺼지면서 주변이 어두워지거나 색감이 채도가 빠지며 차갑게 변하는 효과</div>
+          </div>
+          <div class="ss-row">
+            <div class="ss-label">자막/나레이션</div>
+            <div class="ss-content ss-narr">"만약 은행에서 '우리'라는 단어가 사라진다면 어떻게 될까요?"</div>
+          </div>
+          <div class="ss-row">
+            <div class="ss-label">오디오/음악</div>
+            <div class="ss-content">건조하고 낮은 기계음</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-script">
+        <div class="ss-header">
+          씬 2 <span class="ss-dur">6초</span>
+        </div>
+        <div class="ss-body">
+          <div class="ss-row">
+            <div class="ss-label">화면</div>
+            <div class="ss-content">화면이 전환되며 소상공인, 취약계층, 청년들이 서로를 돕고 미소 짓는 따뜻한 일상이 빠르게 지나감 (AI 생성 스틸컷).</div>
+          </div>
+          <div class="ss-row">
+            <div class="ss-label">나레이션</div>
+            <div class="ss-content ss-narr">"상인의 땀방울을 닦아주고, 청년의 내일을 안아주며, 이웃의 어려움을 함께 나누는 '우리'가 없다면,"</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-script">
+        <div class="ss-header">
+          씬 2.5 <span class="ss-dur">4초</span>
+        </div>
+        <div class="ss-body">
+          <div class="ss-row">
+            <div class="ss-label">화면</div>
+            <div class="ss-content">차가운 느낌의 은행 내부를 보여주기</div>
+          </div>
+          <div class="ss-row">
+            <div class="ss-label">나레이션</div>
+            <div class="ss-content ss-narr">"은행은 그저 차가운 건물이 될 뿐입니다."</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-script">
+        <div class="ss-header">
+          씬 3 <span class="ss-dur">5초</span>
+        </div>
+        <div class="ss-body">
+          <div class="ss-row">
+            <div class="ss-label">화면</div>
+            <div class="ss-content">지워졌던 간판에 '우리은행 로고 + 우리'라는 글자가 다시 켜진다. 글자가 따뜻한 황금빛, 부드러운 화이트 톤으로 서서히 차오른다. '우리은행로고 + 우리은행' 완성. 이때 처음에 로고가 없던 자리는 아무것도 쓰지말고 비워놔.</div>
+          </div>
+          <div class="ss-row">
+            <div class="ss-label">나레이션</div>
+            <div class="ss-content ss-narr">"숫자가 아닌 사람을 담는 곳. 거래가 아닌 관계를 쌓는 곳. 우리은행은 언제나 우리의 곁에 있겠습니다"</div>
+          </div>
+          <div class="ss-row">
+            <div class="ss-label">오디오/음악</div>
+            <div class="ss-content">음악 고조, 따뜻한 현악기 선율</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-script">
+        <div class="ss-header">
+          씬 4 <span class="ss-dur">5초</span>
+        </div>
+        <div class="ss-body">
+          <div class="ss-row">
+            <div class="ss-label">배경</div>
+            <div class="ss-content">따뜻한 화이트/크림 톤</div>
+          </div>
+          <div class="ss-row">
+            <div class="ss-label">화면</div>
+            <div class="ss-content">우리은행 로고 + 우리 마음속 첫번째 금융</div>
+          </div>
+          <div class="ss-row">
+            <div class="ss-label">자막</div>
+            <div class="ss-content ss-narr">"우리은행, 우리 마음속 첫번째 금융"</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bd-p" style="margin-top:16px; padding:12px 14px; background:var(--color-background-secondary); border-radius:8px; border:0.5px solid var(--color-border-tertiary);">
+        이때, 모든 씬의 자막은 너무 화려한 폰트보다는 <strong>신뢰감을 주는 고딕 계열의 정갈한 흰색 폰트</strong>를 사용, 자막의 위치는 약간 아래쪽.<br><br>
+        색감 대비 강조: 씬3의 '우리은행' 복구 장면은 <strong>따뜻한 주황/금빛(Warm Tone)</strong>으로 확실하게 대비를 준다.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       PART 2 — 멀티모달 스토리보드 (HTML)
+       ════════════════════════════════════ -->
+  <div class="section-divider">
+    <div class="sd-line"></div>
+    <div class="sd-label">Part 2 · 멀티모달 AI 스토리보드</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <!-- ===== 원본 HTML 스토리보드 (내용 무변경) ===== -->
+  <h2 class="sr-only">우리은행 광고 멀티모달 AI 스토리보드 — 씬별 사용 도구 및 선택 이유 정리</h2>
+  <div class="sb-wrap">
+    <div class="header-row">
+      <div class="title-block">
+        <h1>우리은행 광고 — 멀티모달 스토리보드</h1>
+        <p>씬별 사용 AI 도구 및 선택 근거 · 총 30초</p>
+      </div>
+      <div class="tool-legend">
+        <span class="legend-pill pill-img"><i class="fa-solid fa-image" aria-hidden="true"></i> 나노바나나</span>
+        <span class="legend-pill pill-vid"><i class="fa-solid fa-video" aria-hidden="true"></i> Veo</span>
+        <span class="legend-pill pill-aud"><i class="fa-solid fa-music" aria-hidden="true"></i> ElevenLabs / Suno</span>
+      </div>
+    </div>
+
+    <div class="scene-card tone-cold">
+      <div class="scene-header">
+        <span class="scene-num">씬 1</span>
+        <span class="scene-title">우리은행 본점 — 간판 소등</span>
+        <span class="scene-dur"><i class="fa-solid fa-clock" aria-hidden="true" style="font-size:12px"></i> 10초</span>
+      </div>
+      <div class="scene-body">
+        <div class="thumb">
+          <i class="fa-solid fa-building-columns thumb-icon" aria-hidden="true"></i>
+          <span class="thumb-label">웅장한 본점 외관<br>→ 채도 저하 효과</span>
+        </div>
+        <div class="scene-col">
+          <div class="col-label">화면 / 나레이션</div>
+          <div class="col-text">거대하고 웅장한 본점 건물 외관. 정문 간판 "우리은행" 중 <strong style="color:var(--color-text-primary)">"우리"</strong> 부분 소등. 주변이 차갑고 어두운 채도로 전환.</div>
+          <div class="narr-text" style="margin-top:8px">"만약 은행에서 '우리'라는 단어가 사라진다면 어떻게 될까요?"</div>
+        </div>
+        <div class="scene-col">
+          <div class="col-label">사용 도구 &amp; 선택 이유</div>
+          <div class="tool-row">
+            <span class="tool-tag tag-img"><i class="fa-solid fa-image" style="font-size:11px" aria-hidden="true"></i> 나노바나나</span>
+            <span class="tool-tag tag-vid"><i class="fa-solid fa-video" style="font-size:11px" aria-hidden="true"></i> Veo</span>
+            <span class="tool-tag tag-aud"><i class="fa-solid fa-music" style="font-size:11px" aria-hidden="true"></i> ElevenLabs</span>
+            <span class="tool-tag tag-aud"><i class="fa-solid fa-music" style="font-size:11px" aria-hidden="true"></i> Suno</span>
+          </div>
+          <div class="why-box">
+            <div class="why-label">나노바나나</div>
+            한국 건물 특유의 질감과 간판 레이아웃을 한국어 프롬프트로 정밀 생성. 레퍼런스 스틸컷 제작.
+          </div>
+          <div class="why-box">
+            <div class="why-label">Veo</div>
+            스틸컷 기반 이미지-투-비디오로 간판 소등 → 채도 저하 애니메이션을 자연스러운 카메라 워크와 함께 생성.
+          </div>
+          <div class="why-box">
+            <div class="why-label">ElevenLabs / Suno</div>
+            ElevenLabs: 신뢰감 있는 한국어 나레이션 보이스. Suno: 건조하고 낮은 기계음 BGM 생성.
+          </div>
+        </div>
+      </div>
+      <!-- ▼ 필수 필드: 목표 / 프롬프트 / 출력 요약 -->
+      <div class="scene-extras">
+        <div class="se-row">
+          <span class="se-label lbl-goal">목표</span>
+          <div class="se-content">브랜드명에서 '우리'가 사라졌을 때의 결핍감과 공허함을 시각·청각적으로 전달하여, 시청자가 '우리'라는 단어의 가치를 직관적으로 인식하도록 감성적 주의를 환기한다.</div>
+        </div>
+        <div class="se-row">
+          <span class="se-label lbl-prompt">프롬프트</span>
+          <div class="se-prompts">
+            <div class="se-prompt-item">
+              <div class="se-prompt-tool">나노바나나</div>
+              <div class="se-prompt-text">"서울 도심, 웅장한 우리은행 본점 건물 외관, 밤, 정문 대형 간판 점등 상태, 한국 건물 특유의 유리 외벽 질감, 넓은 광장, 고해상도 사실감 있는 스틸컷"</div>
+            </div>
+            <div class="se-prompt-item">
+              <div class="se-prompt-tool">Veo (이미지→비디오)</div>
+              <div class="se-prompt-text">"이미지 기반: 우리은행 간판에서 '우리' 글자 서서히 소등, 조명 꺼지며 주변 색감 채도 저하, 냉랭한 블루-그레이 톤으로 전환, 카메라 서서히 줌인, 총 10초 클립"</div>
+            </div>
+            <div class="se-prompt-item">
+              <div class="se-prompt-tool">ElevenLabs</div>
+              <div class="se-prompt-text">"중저음 신뢰감 있는 남성 한국어 나레이션, 차분하고 의문을 던지는 어조, 텍스트: '만약 은행에서 우리라는 단어가 사라진다면 어떻게 될까요?'"</div>
+            </div>
+            <div class="se-prompt-item">
+              <div class="se-prompt-tool">Suno</div>
+              <div class="se-prompt-text">"건조하고 낮은 기계음 BGM, 공허하고 차가운 분위기, BPM 55, 현악기 없음, 미니멀 앰비언트 사운드, 10초"</div>
+            </div>
+          </div>
+        </div>
+        <div class="se-row">
+          <span class="se-label lbl-output">출력 요약</span>
+          <div class="se-content">① 우리은행 본점 외관 기준 스틸컷 1장(나노바나나) → ② '우리' 소등·채도 저하 동영상 클립 10초(Veo) → ③ 오프닝 나레이션 보이스 파일(ElevenLabs) → ④ 기계음 BGM 트랙 10초(Suno)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene-card tone-warm">
+      <div class="scene-header">
+        <span class="scene-num">씬 2</span>
+        <span class="scene-title">따뜻한 일상 — 소상공인·청년·취약계층</span>
+        <span class="scene-dur"><i class="fa-solid fa-clock" aria-hidden="true" style="font-size:12px"></i> 6초</span>
+      </div>
+      <div class="scene-body">
+        <div class="thumb">
+          <i class="fa-solid fa-users thumb-icon" aria-hidden="true"></i>
+          <span class="thumb-label">빠른 컷 전환<br>따뜻한 스틸컷 3~4장</span>
+        </div>
+        <div class="scene-col">
+          <div class="col-label">화면 / 나레이션</div>
+          <div class="col-text">소상공인, 청년, 취약계층이 서로 돕고 미소 짓는 따뜻한 일상 스틸컷이 빠르게 전환. 웜 톤 보정.</div>
+          <div class="narr-text" style="margin-top:8px">"상인의 땀방울을 닦아주고, 청년의 내일을 안아주며, 이웃의 어려움을 함께 나누는 '우리'가 없다면,"</div>
+        </div>
+        <div class="scene-col">
+          <div class="col-label">사용 도구 &amp; 선택 이유</div>
+          <div class="tool-row">
+            <span class="tool-tag tag-img"><i class="fa-solid fa-image" style="font-size:11px" aria-hidden="true"></i> 나노바나나</span>
+            <span class="tool-tag tag-vid"><i class="fa-solid fa-video" style="font-size:11px" aria-hidden="true"></i> Veo</span>
+          </div>
+          <div class="why-box">
+            <div class="why-label">나노바나나</div>
+            "시장 상인", "취업 준비 청년" 등 한국 생활 맥락에 밀착된 인물 스틸컷을 높은 사실감으로 생성. 3~4장 세트 제작.
+          </div>
+          <div class="why-box">
+            <div class="why-label">Veo</div>
+            스틸컷에 자연스러운 줌·패닝 모션을 부여하고, 빠른 컷 편집에 적합한 짧은 클립(1~2초) 단위로 분할 생성.
+          </div>
+        </div>
+      </div>
+      <!-- ▼ 필수 필드: 목표 / 프롬프트 / 출력 요약 -->
+      <div class="scene-extras">
+        <div class="se-row">
+          <span class="se-label lbl-goal">목표</span>
+          <div class="se-content">'우리'가 존재할 때 일상에서 피어나는 따뜻한 공동체적 가치(상인·청년·이웃)를 감성적 스틸컷으로 제시하여, '우리'의 소중함을 정서적으로 각인시킨다.</div>
+        </div>
+        <div class="se-row">
+          <span class="se-label lbl-prompt">프롬프트</span>
+          <div class="se-prompts">
+            <div class="se-prompt-item">
+              <div class="se-prompt-tool">나노바나나 — 컷 ①</div>
+              <div class="se-prompt-text">"한국 전통시장 상인, 땀을 닦으며 환하게 웃는 모습, 웜 오렌지 자연광, 사실감 있는 생활 스틸컷, 고해상도"</div>
+            </div>
+            <div class="se-prompt-item">
+              <div class="se-prompt-tool">나노바나나 — 컷 ②</div>
+              <div class="se-prompt-text">"취업 준비 중인 20대 한국 청년, 노트북 앞에서 희망찬 미소, 카페 또는 도서관 배경, 따뜻한 간접 조명, 웜 톤"</div>
+            </div>
+            <div class="se-prompt-item">
+              <div class="se-prompt-tool">나노바나나 — 컷 ③·④</div>
+              <div class="se-prompt-text">"이웃을 도우며 미소 짓는 한국인 노인·청년, 따뜻한 실내 배경, 자연스러운 생활 장면, 웜 크림 색감, 3~4장 세트 제작"</div>
+            </div>
+            <div class="se-prompt-item">
+              <div class="se-prompt-tool">Veo</div>
+              <div class="se-prompt-text">"3~4장 스틸컷 시퀀스, 각 컷에 줌·패닝 모션 부여, 빠른 컷 전환 (컷당 1~2초), 웜 톤 색보정 유지, 총 6초 클립"</div>
+            </div>
+          </div>
+        </div>
+        <div class="se-row">
+          <span class="se-label lbl-output">출력 요약</span>
+          <div class="se-content">① 따뜻한 생활 스틸컷 3~4장(나노바나나) → ② 빠른 컷 전환 동영상 클립 6초(Veo) → ③ 씬 1 나레이션과 연결되는 보이스 파일 이어붙임(ElevenLabs)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene-card tone-cold">
+      <div class="scene-header">
+        <span class="scene-num">씬 2.5</span>
+        <span class="scene-title">차가운 은행 내부</span>
+        <span class="scene-dur"><i class="fa-solid fa-clock" aria-hidden="true" style="font-size:12px"></i> 4초</span>
+      </div>
+      <div class="scene-body">
+        <div class="thumb">
+          <i class="fa-solid fa-building thumb-icon" aria-hidden="true"></i>
+          <span class="thumb-label">냉랭하고 텅 빈<br>은행 로비</span>
+        </div>
+        <div class="scene-col">
+          <div class="col-label">화면 / 나레이션</div>
+          <div class="col-text">인기척 없이 차갑고 기계적인 은행 내부. 블루/그레이 계열 컬러. 텅 빈 창구, 냉각된 공간감.</div>
+          <div class="narr-text" style="margin-top:8px">"은행은 그저 차가운 건물이 될 뿐입니다."</div>
+        </div>
+        <div class="scene-col">
+          <div class="col-label">사용 도구 &amp; 선택 이유</div>
+          <div class="tool-row">
+            <span class="tool-tag tag-img"><i class="fa-solid fa-image" style="font-size:11px" aria-hidden="true"></i> 나노바나나</span>
+            <span class="tool-tag tag-vid"><i class="fa-solid fa-video" style="font-size:11px" aria-hidden="true"></i> Veo</span>
+          </div>
+          <div class="why-box">
+            <div class="why-label">나노바나나</div>
+            씬1과 동일한 시각적 언어(채도 저하, 블루 톤)를 유지하는 실내 스틸컷 생성. 프롬프트 일관성 확보.
+          </div>
+          <div class="why-box">
+            <div class="why-label">Veo</div>
+            느린 달리 숏으로 공간의 냉랭함을 극대화. 단 4초 분량의 짧은 클립도 Veo의 프레임-레벨 제어로 정밀 생성 가능.
+          </div>
+        </div>
+      </div>
+      <!-- ▼ 필수 필드: 목표 / 프롬프트 / 출력 요약 -->
+      <div class="scene-extras">
+        <div class="se-row">
+          <span class="se-label lbl-goal">목표</span>
+          <div class="se-content">'우리'가 없는 은행의 냉랭하고 기계적인 이미지를 씬 2의 따뜻함과 극명하게 대비시켜, 공동체의 부재가 만드는 공허함을 시각적으로 극대화한다.</div>
+        </div>
+        <div class="se-row">
+          <span class="se-label lbl-prompt">프롬프트</span>
+          <div class="se-prompts">
+            <div class="se-prompt-item">
+              <div class="se-prompt-tool">나노바나나</div>
+              <div class="se-prompt-text">"인적 없는 한국 은행 내부, 빈 창구, 형광등 백색 조명, 블루-그레이 냉랭한 색감, 텅 빈 대기석, 차갑고 공허한 공간감, 고해상도 스틸컷"</div>
+            </div>
+            <div class="se-prompt-item">
+              <div class="se-prompt-tool">Veo</div>
+              <div class="se-prompt-text">"슬로우 달리 숏: 텅 빈 은행 내부를 좌→우 천천히 이동, 블루-그레이 채도 강조, 인물 없음, 4초 클립, 씬 1 비주얼 언어 일관성 유지"</div>
+            </div>
+          </div>
+        </div>
+        <div class="se-row">
+          <span class="se-label lbl-output">출력 요약</span>
+          <div class="se-content">① 냉랭한 은행 내부 스틸컷 1장(나노바나나) → ② 달리 숏 동영상 클립 4초(Veo) → ③ "은행은 그저 차가운 건물이 될 뿐입니다." 나레이션 연결(ElevenLabs)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene-card tone-warm">
+      <div class="scene-header">
+        <span class="scene-num">씬 3</span>
+        <span class="scene-title">"우리" 복구 — 황금빛 점등</span>
+        <span class="scene-dur"><i class="fa-solid fa-clock" aria-hidden="true" style="font-size:12px"></i> 5초</span>
+      </div>
+      <div class="scene-body">
+        <div class="thumb">
+          <i class="fa-solid fa-sun thumb-icon" aria-hidden="true"></i>
+          <span class="thumb-label">황금빛 점등<br>웜 컬러 복구</span>
+        </div>
+        <div class="scene-col">
+          <div class="col-label">화면 / 나레이션</div>
+          <div class="col-text">꺼졌던 "우리" 글자가 따뜻한 황금빛·화이트 톤으로 서서히 점등. "우리은행" 완성. 로고 자리는 공백 유지. 따뜻한 현악기 고조.</div>
+          <div class="narr-text" style="margin-top:8px">"숫자가 아닌 사람을 담는 곳. 거래가 아닌 관계를 쌓는 곳. 우리은행은 언제나 우리의 곁에 있겠습니다."</div>
+        </div>
+        <div class="scene-col">
+          <div class="col-label">사용 도구 &amp; 선택 이유</div>
+          <div class="tool-row">
+            <span class="tool-tag tag-img"><i class="fa-solid fa-image" style="font-size:11px" aria-hidden="true"></i> 나노바나나</span>
+            <span class="tool-tag tag-vid"><i class="fa-solid fa-video" style="font-size:11px" aria-hidden="true"></i> Veo</span>
+            <span class="tool-tag tag-aud"><i class="fa-solid fa-music" style="font-size:11px" aria-hidden="true"></i> ElevenLabs</span>
+            <span class="tool-tag tag-aud"><i class="fa-solid fa-music" style="font-size:11px" aria-hidden="true"></i> Suno</span>
+          </div>
+          <div class="why-box">
+            <div class="why-label">나노바나나</div>
+            씬1에서 생성된 건물 스틸컷을 재활용. "점등 후" 상태(황금빛 조명 버전)를 별도 프롬프트로 생성해 Before/After 쌍 확보.
+          </div>
+          <div class="why-box">
+            <div class="why-label">Veo</div>
+            두 스틸컷(소등→점등) 간 모핑 트랜지션을 비디오로 생성. 빛이 차오르는 연속적 애니메이션은 비디오 AI가 필수.
+          </div>
+          <div class="why-box">
+            <div class="why-label">ElevenLabs / Suno</div>
+            ElevenLabs: 감정이 고조되는 클라이막스 나레이션 톤 조절. Suno: 현악기 고조 BGM을 씬1 기계음과 동일 세계관으로 이어지도록 생성.
+          </div>
+        </div>
+      </div>
+      <!-- ▼ 필수 필드: 목표 / 프롬프트 / 출력 요약 -->
+      <div class="scene-extras">
+        <div class="se-row">
+          <span class="se-label lbl-goal">목표</span>
+          <div class="se-content">'우리'의 귀환을 황금빛 점등으로 시각화하여 광고의 감동적 클라이막스를 연출하고, "사람을 중심에 두는 우리은행"이라는 브랜드 가치를 정서적으로 확인시킨다.</div>
+        </div>
+        <div class="se-row">
+          <span class="se-label lbl-prompt">프롬프트</span>
+          <div class="se-prompts">
+            <div class="se-prompt-item">
+              <div class="se-prompt-tool">나노바나나 (점등 버전)</div>
+              <div class="se-prompt-text">"씬 1 동일 우리은행 본점 건물 외관, 정문 간판 황금빛 전체 점등 상태, 따뜻한 주황/골드 조명, 부드러운 화이트 광채, '우리은행' 완성 간판, 우리은행 로고 자리 공백 유지, 고해상도 스틸컷"</div>
+            </div>
+            <div class="se-prompt-item">
+              <div class="se-prompt-tool">Veo (모핑 트랜지션)</div>
+              <div class="se-prompt-text">"씬1 소등 이미지→점등 이미지 모핑 트랜지션, 황금빛 빛이 좌측에서 서서히 차오르는 효과, 카메라 서서히 풀아웃, 총 5초 클립"</div>
+            </div>
+            <div class="se-prompt-item">
+              <div class="se-prompt-tool">ElevenLabs</div>
+              <div class="se-prompt-text">"감정 고조된 클라이막스 나레이션, 신뢰감·따뜻함 공존하는 어조, 텍스트: '숫자가 아닌 사람을 담는 곳. 거래가 아닌 관계를 쌓는 곳. 우리은행은 언제나 우리의 곁에 있겠습니다'"</div>
+            </div>
+            <div class="se-prompt-item">
+              <div class="se-prompt-tool">Suno</div>
+              <div class="se-prompt-text">"씬 1 기계음 BGM과 동일 세계관, 따뜻한 현악기 선율 점진적 고조, BPM 65→80, 감동적 클라이막스 사운드, 5초 구간"</div>
+            </div>
+          </div>
+        </div>
+        <div class="se-row">
+          <span class="se-label lbl-output">출력 요약</span>
+          <div class="se-content">① 점등 상태 스틸컷 1장(나노바나나) + 씬1 소등 컷과 Before/After 쌍 확보 → ② 소등→점등 모핑 동영상 클립 5초(Veo) → ③ 클라이막스 나레이션 보이스 파일(ElevenLabs) → ④ 현악기 고조 BGM 트랙 5초(Suno)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene-card tone-bright">
+      <div class="scene-header">
+        <span class="scene-num">씬 4</span>
+        <span class="scene-title">엔딩 — 브랜드 슬로건</span>
+        <span class="scene-dur"><i class="fa-solid fa-clock" aria-hidden="true" style="font-size:12px"></i> 5초</span>
+      </div>
+      <div class="scene-body">
+        <div class="thumb">
+          <i class="fa-regular fa-star thumb-icon" aria-hidden="true"></i>
+          <span class="thumb-label">화이트/크림 배경<br>로고 + 슬로건</span>
+        </div>
+        <div class="scene-col">
+          <div class="col-label">화면 / 나레이션</div>
+          <div class="col-text">따뜻한 화이트/크림 배경. 우리은행 로고 등장. 고딕 계열 흰 폰트 자막 하단 배치.</div>
+          <div class="narr-text" style="margin-top:8px">"우리은행, 우리 마음속 첫번째 금융"</div>
+        </div>
+        <div class="scene-col">
+          <div class="col-label">사용 도구 &amp; 선택 이유</div>
+          <div class="tool-row">
+            <span class="tool-tag tag-img"><i class="fa-solid fa-image" style="font-size:11px" aria-hidden="true"></i> 나노바나나</span>
+            <span class="tool-tag tag-vid"><i class="fa-solid fa-video" style="font-size:11px" aria-hidden="true"></i> Veo</span>
+            <span class="tool-tag tag-aud"><i class="fa-solid fa-music" style="font-size:11px" aria-hidden="true"></i> Suno</span>
+          </div>
+          <div class="why-box">
+            <div class="why-label">나노바나나</div>
+            브랜드 가이드라인에 맞는 크림 배경 + 슬로건 레이아웃 스틸컷 제작. 후보 컷 여러 장 빠르게 생성 후 선별.
+          </div>
+          <div class="why-box">
+            <div class="why-label">Veo</div>
+            스틸컷에 로고 페이드인 + 슬로건 타이핑 모션 효과 부여. 정적인 엔딩에 안정적인 마무리 움직임 추가.
+          </div>
+          <div class="why-box">
+            <div class="why-label">Suno</div>
+            현악기 선율을 자연스럽게 감소시키며 마무리되는 아웃트로 구간 생성. 전체 BGM의 시작-끝을 Suno 단일 프로젝트로 통일.
+          </div>
+        </div>
+      </div>
+      <!-- ▼ 필수 필드: 목표 / 프롬프트 / 출력 요약 -->
+      <div class="scene-extras">
+        <div class="se-row">
+          <span class="se-label lbl-goal">목표</span>
+          <div class="se-content">우리은행 로고와 슬로건을 깔끔하게 제시하여 광고를 마무리하고, '우리 마음속 첫번째 금융'이라는 브랜드 아이덴티티를 시청자에게 명확히 각인시킨다.</div>
+        </div>
+        <div class="se-row">
+          <span class="se-label lbl-prompt">프롬프트</span>
+          <div class="se-prompts">
+            <div class="se-prompt-item">
+              <div class="se-prompt-tool">나노바나나</div>
+              <div class="se-prompt-text">"따뜻한 크림/화이트 단색 배경, 우리은행 브랜드 로고 중앙 배치, 하단 고딕 계열 흰 폰트 슬로건, 충분한 여백의 미니멀 레이아웃, 후보 레이아웃 컷 3장"</div>
+            </div>
+            <div class="se-prompt-item">
+              <div class="se-prompt-tool">Veo</div>
+              <div class="se-prompt-text">"크림 배경 유지, 우리은행 로고 페이드인(0~2초) → 슬로건 타이핑 모션 효과(2~5초), 안정적이고 정갈한 마무리 애니메이션, 총 5초 클립"</div>
+            </div>
+            <div class="se-prompt-item">
+              <div class="se-prompt-tool">Suno</div>
+              <div class="se-prompt-text">"씬3 현악기 선율 자연스럽게 디크레센도, 아웃트로 5초 구간, 전체 30초 BGM 하나의 프로젝트로 통일, 깔끔한 페이드아웃 마무리"</div>
+            </div>
+          </div>
+        </div>
+        <div class="se-row">
+          <span class="se-label lbl-output">출력 요약</span>
+          <div class="se-content">① 브랜드 슬로건 레이아웃 후보 스틸컷 3장 중 최종 선별(나노바나나) → ② 로고 페이드인+슬로건 타이핑 동영상 클립 5초(Veo) → ③ 현악기 아웃트로 BGM 트랙 5초(Suno) → 전체 30초 광고 최종 완성</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-summary">
+      <div class="tool-card">
+        <div class="tool-card-head">
+          <div class="tool-card-icon icon-img"><i class="fa-solid fa-image" style="color:#854F0B" aria-hidden="true"></i></div>
+          <div>
+            <div class="tool-card-name">나노바나나</div>
+            <div class="tool-card-cat">이미지 생성 AI</div>
+          </div>
+        </div>
+        <div class="tool-card-desc">한국어 프롬프트에 최적화된 국산 이미지 생성 AI. 한국 건물, 한국인 인물, 국내 생활 맥락의 스틸컷을 자연스럽게 생성. 씬1~4 전 구간의 레퍼런스 이미지 제작에 사용.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-head">
+          <div class="tool-card-icon icon-vid"><i class="fa-solid fa-video" style="color:#0C447C" aria-hidden="true"></i></div>
+          <div>
+            <div class="tool-card-name">Veo (Google)</div>
+            <div class="tool-card-cat">비디오 생성 AI</div>
+          </div>
+        </div>
+        <div class="tool-card-desc">이미지-투-비디오 및 텍스트-투-비디오 모두 지원. 간판 소등·점등 모핑, 슬로우 달리 숏 등 연속적인 카메라 움직임 생성에 강점. 전 씬 비디오 생성을 단일 플랫폼으로 통일.</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-head">
+          <div class="tool-card-icon icon-aud"><i class="fa-solid fa-music" style="color:#085041" aria-hidden="true"></i></div>
+          <div>
+            <div class="tool-card-name">ElevenLabs + Suno</div>
+            <div class="tool-card-cat">오디오 생성 AI</div>
+          </div>
+        </div>
+        <div class="tool-card-desc">ElevenLabs: 감정 곡선을 세밀하게 조절하는 한국어 나레이션 보이스. Suno: 기계음(씬1)에서 현악기 고조(씬3)까지 일관된 세계관의 BGM 트랙을 프롬프트로 생성.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
